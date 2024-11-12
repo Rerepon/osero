@@ -48,6 +48,12 @@ h1 {
     border-radius: 50%;
 }
 
+#janken {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #janken h2 {
     color: #333;
 }
@@ -55,6 +61,8 @@ h1 {
 #janken img {
     margin: 10px;
     cursor: pointer;
+    width: 80px; /* スマホに適したサイズ */
+    height: auto;
     transition: transform 0.2s;
 }
 
@@ -71,10 +79,6 @@ h1 {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: background-color 0.2s;
-}
-
-#start-game {
-    display: none; /* 初期は表示しない */
 }
 
 #color-select {
