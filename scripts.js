@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const gooImg = document.getElementById('goo');
     const chokiImg = document.getElementById('choki');
     const paImg = document.getElementById('pa');
-    const startGameButton = document.getElementById('start-game');
     const resetGameButton = document.getElementById('reset-game');
     const resultDisplay = document.getElementById('result');
     const colorSelect = document.getElementById('color-select');
@@ -17,12 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
             gooImg.style.pointerEvents = 'auto';
             chokiImg.style.pointerEvents = 'auto';
             paImg.style.pointerEvents = 'auto';
-            startGameButton.style.display = 'block';
         } else {
             gooImg.style.pointerEvents = 'none';
             chokiImg.style.pointerEvents = 'none';
             paImg.style.pointerEvents = 'none';
-            startGameButton.style.display = 'none';
         }
     });
 
@@ -44,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderBoard();
         resultDisplay.textContent = '';
         jankenDiv.style.display = 'block';
-        startGameButton.style.display = 'none';
 
         // 色が選択されるまでじゃんけんを無効にする
         gooImg.style.pointerEvents = 'none';
@@ -52,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         paImg.style.pointerEvents = 'none';
     }
 
-    function renderBoard() {
+    function renderBoard(disableClicks = true) {
         gameBoard.innerHTML = '';
         for (let row = 0; row < boardSize; row++) {
             for (let col = 0; col < boardSize; col++) {
@@ -63,7 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if (board[row][col] === 'black') {
                     cell.classList.add('black');
                 }
-                cell.addEventListener('click', () => placePiece(row, col));
+                if (!disableClicks) {
+                    cell.addEventListener('click', () => placePiece(row, col));
+                }
                 gameBoard.appendChild(cell);
             }
         }
@@ -91,8 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         jankenDiv.style.display = 'none';
-        startGameButton.style.display = 'none'; // ゲーム開始ボタンを消す
-        renderBoard();
+        renderBoard(false); // クリックを有効にする
     }
 
     function determineWinner(player1, player2) {
@@ -108,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         flipPieces(row, col, currentPlayer);
         currentPlayer = currentPlayer === 'black' ? 'white' : 'black';
 
-        renderBoard();
+        renderBoard(false); // クリックを有効にする
         checkWinner();
 
         if (!gameEnded && !hasValidMove(currentPlayer)) {
@@ -220,10 +217,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (forceEnd || blackCount + whiteCount === boardSize * boardSize || blackCount === 0 || whiteCount === 0) {
             gameEnded = true;
+            let playerColorName = playerColor === 'black' ? '黒' : '白';
+            let computerColorName = computerColor === 'black' ? '黒' : '白';
             if (blackCount > whiteCount) {
-                resultDisplay.textContent = 'おめでとうございます！黒の勝ちです！';
+                if (playerColor === 'black') {
+                    resultDisplay.textContent = `おめでとうございます！あなた（${playerColorName}）の勝ちです！`;
+                } else {
+                    resultDisplay.textContent = `コンピューター（${computerColorName}）が勝ちました！`;
+                }
             } else if (whiteCount > blackCount) {
-                resultDisplay.textContent = 'おめでとうございます！白の勝ちです！';
+                if (playerColor === 'white') {
+                    resultDisplay.textContent = `おめでとうございます！あなた（${playerColorName}）の勝ちです！`;
+                } else {
+                    resultDisplay.textContent = `コンピューター（${computerColorName}）が勝ちました！`;
+                }
             } else {
                 resultDisplay.textContent = '引き分けです。';
             }
