@@ -9,17 +9,18 @@
 <body>
     <h1>オセロゲーム</h1>
     <div id="game-board"></div>
-    <div id="janken">
-        <h2>じゃんけんを選んでください</h2>
-        <img src="https://x.gd/MlgT9" alt="グー" id="goo">
-        <img src="https://x.gd/J6PKw"チョキ" id="choki">
-        <img src="https://x.gd/dsvHY" alt="パー" id="pa">
-    </div>
     <label for="color-select">駒の色を選択してください:</label>
     <select id="color-select">
+        <option value="">選択してください</option>
         <option value="black">黒</option>
         <option value="white">白</option>
     </select>
+    <div id="janken" style="display: none;">
+        <h2>じゃんけんを選んでください</h2>
+        <img src="https://x.gd/MlgT9" alt="グー" id="goo">
+        <img src="https://x.gd/J6PKw" alt="チョキ" id="choki">
+        <img src="https://x.gd/dsvHY" alt="パー" id="pa">
+    </div>
     <button id="start-game" style="display:none;">ゲーム開始</button>
     <button id="reset-game">リセット</button>
     <p id="result"></p>
