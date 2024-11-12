@@ -1,0 +1,99 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    text-shadow: 2px 2px #ccc;
+    margin-bottom: 20px;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(8, 60px);
+    grid-template-rows: repeat(8, 60px);
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.cell {
+    width: 60px;
+    height: 60px;
+    background-color: #007bff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.cell.white {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 2px solid #333;
+}
+
+.cell.black {
+    width: 50px;
+    height: 50px;
+    background-color: #000;
+    border-radius: 50%;
+}
+
+#janken h2 {
+    color: #333;
+}
+
+#janken img {
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#janken img:hover {
+    transform: scale(1.1);
+}
+
+#color-select, #start-game, #reset-game {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#start-game {
+    display: none; /* 初期は表示しない */
+}
+
+#color-select {
+    background-color: #fff;
+}
+
+#start-game {
+    background-color: #28a745;
+    color: #fff;
+}
+
+#reset-game {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+#result {
+    font-size: 20px;
+    color: #333;
+    margin-top: 20px;
+    text-align: center;
+}
