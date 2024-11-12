@@ -35,6 +35,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 10%;
     position: relative;
     transition: background-color 0.3s; /* 背景色の変化を滑らかに */
 }
@@ -132,9 +133,13 @@ h1 {
         gap: 2px;
     }
 
+    .cell {
+        border-radius: 5%; /* スマホ向けに小さくする */
+    }
+
     .cell.white, .cell.black {
-        width: 80%;
-        height: 80%;
+        width: 60%;
+        height: 60%;
     }
 
     #janken img {
