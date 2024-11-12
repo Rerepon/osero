@@ -49,9 +49,7 @@ h1 {
 }
 
 #janken {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
 }
 
 #janken h2 {
@@ -59,10 +57,10 @@ h1 {
 }
 
 #janken img {
+    width: 80px;
+    height: 80px;
     margin: 10px;
     cursor: pointer;
-    width: 80px; /* スマホに適したサイズ */
-    height: auto;
     transition: transform 0.2s;
 }
 
@@ -79,6 +77,10 @@ h1 {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: background-color 0.2s;
+}
+
+#start-game {
+    display: none; /* 初期は表示しない */
 }
 
 #color-select {
@@ -100,4 +102,42 @@ h1 {
     color: #333;
     margin-top: 20px;
     text-align: center;
+}
+
+/* スマホ向けのスタイル */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    #game-board {
+        grid-template-columns: repeat(8, 40px);
+        grid-template-rows: repeat(8, 40px);
+        gap: 3px;
+    }
+
+    .cell {
+        width: 40px;
+        height: 40px;
+    }
+
+    .cell.white, .cell.black {
+        width: 30px;
+        height: 30px;
+    }
+
+    #janken img {
+        width: 60px;
+        height: 60px;
+        margin: 5px;
+    }
+
+    #color-select, #start-game, #reset-game {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    #result {
+        font-size: 16px;
+    }
 }
