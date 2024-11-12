@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>オセロゲーム</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>オセロゲーム</h1>
+    <div id="game-board"></div>
+    <div id="janken">
+        <h2>じゃんけんを選んでください</h2>
+        <img src="c:\Users\rerep\OneDrive\ドキュメント\hand_gu-.png" alt="グー" id="goo">
+        <img src="c:\Users\rerep\OneDrive\ドキュメント\hand_tyoki.png" alt="チョキ" id="choki">
+        <img src="c:\Users\rerep\OneDrive\ドキュメント\hand_pa-.png" alt="パー" id="pa">
+    </div>
+    <label for="color-select">駒の色を選択してください:</label>
+    <select id="color-select">
+        <option value="black">黒</option>
+        <option value="white">白</option>
+    </select>
+    <button id="start-game" style="display:none;">ゲーム開始</button>
+    <button id="reset-game">リセット</button>
+    <p id="result"></p>
+    <script src="scripts.js"></script>
+</body>
+</html>
