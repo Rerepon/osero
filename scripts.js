@@ -7,9 +7,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const startGameButton = document.getElementById('start-game');
     const resetGameButton = document.getElementById('reset-game');
     const resultDisplay = document.getElementById('result');
-    const colorSelect = document.getElementById('color-select'); // ここを追加
+    const colorSelect = document.getElementById('color-select');
     const boardSize = 8;
     let board, currentPlayer, playerColor, computerColor, gameEnded;
+
+    colorSelect.addEventListener('change', () => {
+        const selectedColor = colorSelect.value;
+        if (selectedColor) {
+            gooImg.style.pointerEvents = 'auto';
+            chokiImg.style.pointerEvents = 'auto';
+            paImg.style.pointerEvents = 'auto';
+            startGameButton.style.display = 'block';
+        } else {
+            gooImg.style.pointerEvents = 'none';
+            chokiImg.style.pointerEvents = 'none';
+            paImg.style.pointerEvents = 'none';
+            startGameButton.style.display = 'none';
+        }
+    });
 
     gooImg.addEventListener('click', () => startGame(0));
     chokiImg.addEventListener('click', () => startGame(1));
@@ -30,10 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
         resultDisplay.textContent = '';
         jankenDiv.style.display = 'block';
         startGameButton.style.display = 'none';
+
+        // 色が選択されるまでじゃんけんを無効にする
+        gooImg.style.pointerEvents = 'none';
+        chokiImg.style.pointerEvents = 'none';
+        paImg.style.pointerEvents = 'none';
     }
 
     function renderBoard() {
-        gameBoard.innerHTML = ''; // ここを追加して二重表示を防ぐ
+        gameBoard.innerHTML = '';
         for (let row = 0; row < boardSize; row++) {
             for (let col = 0; col < boardSize; col++) {
                 const cell = document.createElement('div');
@@ -57,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let player2Choice = Math.floor(Math.random() * 3);
         let result = determineWinner(playerChoice, player2Choice);
-
+        
         if (result === 1) {
             currentPlayer = playerColor;
             resultDisplay.textContent = `あなたの勝ち！${playerColor === 'black' ? '黒' : '白'}が先攻です。`;
@@ -71,13 +91,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         jankenDiv.style.display = 'none';
-        startGameButton.style.display = 'block';
+        startGameButton.style.display = 'none'; // ゲーム開始ボタンを消す
         renderBoard();
     }
 
     function determineWinner(player1, player2) {
-        if (player1 == player2) return 0; // 引き分け
-        if ((player1 == 0 && player2 == 1) || (player1 == 1 && player2 == 2) || (player1 == 2 && player2 == 0)) return 1; // プレイヤー1の勝ち
+        if (player1 === player2) return 0; // 引き分け
+        if ((player1 === 0 && player2 === 1) || (player1 === 1 && player2 === 2) || (player1 === 2 && player2 === 0)) return 1; // プレイヤー1の勝ち
         return -1; // プレイヤー2の勝ち
     }
 
@@ -211,7 +231,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // イベントリスナーの設定
-    startGameButton.addEventListener('click', renderBoard);
     resetGameButton.addEventListener('click', initGame);
 
     initGame();
