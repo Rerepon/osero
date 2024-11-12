@@ -12,6 +12,7 @@ h1 {
     color: #333;
     text-shadow: 2px 2px #ccc;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 #game-board {
@@ -23,6 +24,10 @@ h1 {
     max-width: 480px; /* 最大幅を設定 */
     aspect-ratio: 1; /* 正方形にする */
     margin-bottom: 20px;
+    background-color: #444; /* 背景色を追加 */
+    padding: 10px; /* パディングを追加 */
+    border-radius: 10px; /* 角を丸くする */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影を追加 */
 }
 
 .cell {
@@ -30,14 +35,19 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10%;
     position: relative;
+    transition: background-color 0.3s; /* 背景色の変化を滑らかに */
+}
+
+.cell:hover {
+    background-color: #0056b3; /* ホバー時の背景色 */
 }
 
 .cell.white, .cell.black {
-    width: 70%;
-    height: 70%;
+    width: 90%; /* 駒のサイズを調整 */
+    height: 90%; /* 駒のサイズを調整 */
     border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を追加 */
 }
 
 .cell.white {
@@ -51,16 +61,18 @@ h1 {
 
 #janken {
     text-align: center;
+    margin-bottom: 20px;
 }
 
 #janken h2 {
     color: #333;
+    margin-bottom: 10px;
 }
 
 #janken img {
-    width: 20%;
-    height: auto;
-    margin: 5px;
+    width: 80px;
+    height: 80px;
+    margin: 10px;
     cursor: pointer;
     transition: transform 0.2s;
 }
@@ -80,22 +92,27 @@ h1 {
     transition: background-color 0.2s;
 }
 
-#start-game {
-    display: none; /* 初期は表示しない */
-}
-
 #color-select {
     background-color: #fff;
 }
 
 #start-game {
+    display: none;
     background-color: #28a745;
     color: #fff;
+}
+
+#start-game:hover {
+    background-color: #218838;
 }
 
 #reset-game {
     background-color: #dc3545;
     color: #fff;
+}
+
+#reset-game:hover {
+    background-color: #c82333;
 }
 
 #result {
@@ -116,13 +133,14 @@ h1 {
     }
 
     .cell.white, .cell.black {
-        width: 60%;
-        height: 60%;
+        width: 80%;
+        height: 80%;
     }
 
     #janken img {
-        width: 25%;
-        margin: 3px;
+        width: 60px;
+        height: 60px;
+        margin: 5px;
     }
 
     #color-select, #start-game, #reset-game {
